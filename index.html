@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Voting System LEVEL 3</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#0f172a,#1e3a8a);
+  color:white;
+  padding:20px;
+}
+.box{
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  margin-bottom:15px;
+  border-radius:15px;
+}
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  color:white;
+  margin:5px;
+}
+.g{background:#059669;}
+.p{background:#7c3aed;}
+.r{background:#dc2626;}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="box" style="text-align:center;">
+
+<h1>🇮🇳 ஒரே நாடு ஒரே தேர்தல் & தொகுதி மறுசீரமைப்பு</h1>
+<h2>One Nation One Election & Delimitation of India</h2>
+
+<h3>உலகளாவிய இந்திய குடியுரிமை பெற்ற மக்களின் தேர்தல் கருத்துக் கணிப்பு & பகுப்பாய்வு இணையதளம்</h3>
+<h3>Global Living Indian Citizens Participation Platform</h3>
+
+<p>"நாம் இந்தியர்கள் — ஒன்றுபட்ட இந்திய தேசம் நமது பெருமை"</p>
+<p>"We Are Indians — A United Indian Nation Is Our Pride"</p>
+
+<p>"பாரத மண்ணின் எதிர்காலம் இந்திய மக்கள் குரலில் ஒலிக்கட்டும்"</p>
+<p>"Let The Future Of Bharat Echo Through The Voice Of Indian Citizens"</p>
+
+<p>"இந்திய ஜனநாயகத்தில் மக்கள் குரல் முக்கியத்துவம் வாய்ந்தது"</p>
+<p>"People's Voice Holds Great Importance In Indian Democracy"</p>
+
+<p>"உலகம் முழுவதும் உள்ள இந்திய குடியுரிமை பெற்ற குடிமக்கள் பங்கேற்கலாம்"</p>
+<p>"Indian Citizens Living Across The World Can Participate"</p>
+
+<hr>
+
+<p><b>Global Indian Vote Platform</b></p>
+<p>Powered by Real-Time Public Opinion Analysis</p>
+
+</header>
+
+<!-- ================= SYSTEM ================= -->
+<div class="box">
+<h2>🗳️ LEVEL 3 Voting System</h2>
+<p>Enterprise Election Engine - Real Time Public Opinion System</p>
+</div>
+
+<!-- ================= LOGIN ================= -->
+<div class="box">
+<h3>Login</h3>
+<button id="loginBtn" class="g">Google Login</button>
+<button id="logoutBtn" class="p">Logout</button>
+<p id="userInfo">Not logged in</p>
+</div>
+
+<!-- ================= VOTE ================= -->
+<div class="box">
+<h3>Vote Panel</h3>
+<button onclick="vote('support')" class="g">Support</button>
+<button onclick="vote('neutral')" class="p">Neutral</button>
+<button onclick="vote('oppose')" class="r">Oppose</button>
+<p id="voteStatus">No vote</p>
+</div>
+
+<!-- ================= LIVE ================= -->
+<div class="box">
+<h3>Live Results</h3>
+<p>Support: <span id="supportCount">0</span></p>
+<p>Neutral: <span id="neutralCount">0</span></p>
+<p>Oppose: <span id="opposeCount">0</span></p>
+<p>Total: <span id="totalVotes">0</span></p>
+</div>
+
+<!-- ================= CHARTS ================= -->
+<div class="box">
+<h3>Live Charts</h3>
+<canvas id="pieChart"></canvas>
+<canvas id="barChart"></canvas>
+</div>
+
+<!-- ================= EXPORT ================= -->
+<div class="box">
+<h3>Export</h3>
+<button onclick="downloadPDF()" class="p">Download PDF</button>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="box" style="text-align:center;">
+
+<hr>
+
+<h3>Important Disclaimer Notice (English)</h3>
+
+<p>This is NOT an official election conducted by Government of India or Election Commission of India.</p>
+<p>No government authority or political party is directly or indirectly involved in this platform.</p>
+<p>This platform is only for independent public opinion survey and analysis purpose.</p>
+
+<hr>
+
+<h3>முக்கிய அறிவிப்பு (Tamil Disclaimer)</h3>
+
+<p>இது இந்திய அரசு அல்லது இந்திய தேர்தல் ஆணையம் நடத்தும் அதிகாரப்பூர்வ தேர்தல் அல்ல.</p>
+<p>எந்த அரசு அமைப்புடனும் தொடர்பில்லை.</p>
+<p>எந்த அரசியல் கட்சிகளும் நேரடியாகவோ மறைமுகமாகவோ ஆலோசனை அல்லது வழிநடத்தவில்லை.</p>
+<p>இந்த இணையதளம் மக்கள் நலன் அடிப்படையிலான சுயாதீன கருத்துக் கணிப்பு & பகுப்பாய்வு சேவை மட்டுமே.</p>
+
+<hr>
+
+<h3>Project Research Head / தொடர்பு விவரங்கள்</h3>
+
+<p><b>N RAMAN</b></p>
+
+<p>
+9, 1st Floor, 2nd Cross Street,<br>
+Gomathipuram, Thiruninravur,<br>
+Thiruvallur District,<br>
+Tamil Nadu - 602024, India
+</p>
+
+<p>Mobile: +91 8939324309 / +91 9384695599</p>
+<p>Email: onoe.voting.survey2026@gmail.com</p>
+<p>Website: https://votingsystem2026-ac105.web.app</p>
+
+<hr>
+
+<p><b>© 2026 Global Indian Vote Platform — All Rights Reserved</b></p>
+
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+signOut,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+setDoc,
+getDoc,
+updateDoc,
+increment,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* FIREBASE */
+const firebaseConfig = {
+  apiKey: "AIzaSyBx2zElYOCWUmYzKp5p-jM6jUc7Gr5hA6o",
+  authDomain: "votingsystem2026-ac105.firebaseapp.com",
+  projectId: "votingsystem2026-ac105",
+  storageBucket: "votingsystem2026-ac105.appspot.com",
+  messagingSenderId: "640142600393",
+  appId: "1:640142600393:web:1e37148197ff33d77b0518",
+  measurementId: "G-09YQ30C8VK"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+let currentUser = null;
+let pieChart, barChart;
+
+/* LOGIN FIX */
+document.getElementById("loginBtn").onclick = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    currentUser = result.user;
+    document.getElementById("userInfo").innerText =
+      "Logged in: " + currentUser.email;
+  } catch (err) {
+    alert("Login failed: " + err.message);
+  }
+};
+
+document.getElementById("logoutBtn").onclick = () => {
+  signOut(auth);
+};
+
+onAuthStateChanged(auth,(user)=>{
+  currentUser = user;
+  document.getElementById("userInfo").innerText =
+    user ? "Logged in: " + user.email : "Not logged in";
+});
+
+/* VOTE */
+window.vote = async (type)=>{
+  if(!currentUser) return alert("Login first");
+
+  const uid = currentUser.uid;
+  const ref = doc(db,"users",uid);
+  const snap = await getDoc(ref);
+
+  if(snap.exists() && snap.data().voted){
+    return alert("Already voted");
+  }
+
+  await setDoc(ref,{
+    email:currentUser.email,
+    voted:true,
+    vote:type
+  });
+
+  const voteRef = doc(db,"votes",type);
+  const vSnap = await getDoc(voteRef);
+
+  if(!vSnap.exists()){
+    await setDoc(voteRef,{count:1});
+  }else{
+    await updateDoc(voteRef,{count:increment(1)});
+  }
+
+  document.getElementById("voteStatus").innerText = "Voted: " + type;
+};
+
+/* LIVE */
+function live(){
+  ["support","neutral","oppose"].forEach(t=>{
+    const ref = doc(db,"votes",t);
+
+    onSnapshot(ref,(snap)=>{
+      const val = snap.exists()?snap.data().count:0;
+      document.getElementById(t+"Count").innerText = val;
+
+      const s = +supportCount.innerText;
+      const n = +neutralCount.innerText;
+      const o = +opposeCount.innerText;
+
+      document.getElementById("totalVotes").innerText = s+n+o;
+
+      updateCharts(s,n,o);
+    });
+  });
+}
+
+/* CHARTS */
+function initCharts(){
+  pieChart = new Chart(document.getElementById("pieChart"),{
+    type:"pie",
+    data:{labels:["Support","Neutral","Oppose"],datasets:[{data:[0,0,0]}]}
+  });
+
+  barChart = new Chart(document.getElementById("barChart"),{
+    type:"bar",
+    data:{labels:["Support","Neutral","Oppose"],datasets:[{data:[0,0,0]}]}
+  });
+}
+
+function updateCharts(s,n,o){
+  pieChart.data.datasets[0].data=[s,n,o];
+  barChart.data.datasets[0].data=[s,n,o];
+  pieChart.update();
+  barChart.update();
+}
+
+/* PDF */
+window.downloadPDF = ()=>{
+  const { jsPDF } = window.jspdf;
+  const docu = new jsPDF();
+
+  docu.text("Voting Results",10,10);
+  docu.text("Support: "+supportCount.innerText,10,20);
+  docu.text("Neutral: "+neutralCount.innerText,10,30);
+  docu.text("Oppose: "+opposeCount.innerText,10,40);
+
+  docu.save("results.pdf");
+};
+
+window.addEventListener("DOMContentLoaded",()=>{
+  initCharts();
+  live();
+});
+
+</script>
+
+</body>
+</html>
